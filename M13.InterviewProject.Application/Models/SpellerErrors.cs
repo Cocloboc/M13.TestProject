@@ -1,4 +1,3 @@
-using M13.InterviewProject.Application.Interfaces;
 
 namespace M13.InterviewProject.Application.Models;
 
