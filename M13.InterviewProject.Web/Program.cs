@@ -16,11 +16,8 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.AddMediator();
-// builder.Services.AddDistributedMemoryCache();
-services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = configuration.GetSection("RedisConnection").Value;
-});
+services.SetupFeatures(configuration);
+
 
 services.AddMvc(options =>
 {
