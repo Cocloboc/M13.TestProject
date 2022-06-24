@@ -1,5 +1,6 @@
 using M13.InterviewProject.Application.Consumers.Rule.Queries.TestRule;
 using M13.InterviewProject.Application.Consumers.SpellChecker.Common;
+using M13.InterviewProject.Application.Consumers.SpellChecker.Queries.GetErrorsFromPage;
 using M13.InterviewProject.Application.Consumers.SpellChecker.Queries.GetErrorsFromText;
 using M13.InterviewProject.Application.Models;
 using MassTransit.Mediator;
@@ -29,11 +30,11 @@ public class SpellCheckerController
     }
     
     [HttpPost("Page/Errors")]
-    public async Task<PageFetchResult> GetErrorsFromPage(GetTextFromPageQuery query, CancellationToken token)
+    public async Task<List<SpellCheckError>> GetErrorsFromPage(GetErrorsFromPageQuery query, CancellationToken token)
     {
         var response = await _mediator
-            .CreateRequestClient<GetTextFromPageQuery>()
-            .GetResponse<GetTextFromPageQueryResponse>(query, token);
+            .CreateRequestClient<GetErrorsFromPageQuery>()
+            .GetResponse<GetErrorsFromPageQueryResponse>(query, token);
         
         return response.Message.Data;
     }
